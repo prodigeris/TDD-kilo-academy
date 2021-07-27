@@ -40,6 +40,9 @@ class FizzBuzzTest extends TestCase
             'number_6' => [
                 6, 'Fizz'
             ],
+            'number_9' => [
+                9, 'Fizz'
+            ],
         ];
     }
 
