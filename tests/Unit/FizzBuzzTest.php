@@ -58,6 +58,15 @@ class FizzBuzzTest extends TestCase
             'number_300' => [
                 300, 'FizzBuzz'
             ],
+            'number_13' => [
+                13, 'Fizz'
+            ],
+            'number_551' => [
+                551, 'Buzz'
+            ],
+            'number_51' => [
+                51, 'FizzBuzz'
+            ],
         ];
     }
 
