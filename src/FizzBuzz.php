@@ -10,20 +10,20 @@ class FizzBuzz
 
     private const BUZZ = 'Buzz';
 
+    protected array $ruleMap = [3 => self::FIZZ, 5 => self::BUZZ];
+
     public function execute(int $number): string
     {
         $result = '';
 
-        if($this->isDivisibleBy($number, 3) || $this->doesNumberContain($number, '3')) {
-            $result .= self::FIZZ;
-        }
-
-        if($this->isDivisibleBy($number, 5)) {
-            $result .= self::BUZZ;
+        foreach($this->ruleMap as $denominator => $text) {
+            if($this->isDivisibleOrContains($number, $denominator)) {
+                $result .= $text;
+            }
         }
 
         if($this->isNotDivisible($result)) {
-            $result .= $number;
+            return (string) $number;
         }
 
         return $result;
@@ -42,5 +42,11 @@ class FizzBuzz
     private function isNotDivisible(string $result): bool
     {
         return $result === '';
+    }
+
+    private function isDivisibleOrContains(int $number, int $denominator): bool
+    {
+        return $this->isDivisibleBy($number, $denominator)
+            || $this->doesNumberContain($number, (string)$denominator);
     }
 }
