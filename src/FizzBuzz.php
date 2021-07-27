@@ -14,18 +14,33 @@ class FizzBuzz
     {
         $result = '';
 
-        if($number % 3 === 0) {
+        if($this->isDivisibleBy($number, 3) || $this->doesNumberContain($number, '3')) {
             $result .= self::FIZZ;
         }
 
-        if($number % 5 === 0) {
+        if($this->isDivisibleBy($number, 5)) {
             $result .= self::BUZZ;
         }
 
-        if($result === '') {
+        if($this->isNotDivisible($result)) {
             $result .= $number;
         }
 
         return $result;
+    }
+
+    private function doesNumberContain(int $number, string $what): bool
+    {
+        return strpos((string)$number, $what) !== false;
+    }
+
+    private function isDivisibleBy(int $number, int $what): bool
+    {
+        return $number % $what === 0;
+    }
+
+    private function isNotDivisible(string $result): bool
+    {
+        return $result === '';
     }
 }

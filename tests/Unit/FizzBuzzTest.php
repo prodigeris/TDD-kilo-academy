@@ -58,9 +58,14 @@ class FizzBuzzTest extends TestCase
             'number_300' => [
                 300, 'FizzBuzz'
             ],
+            'number_13' => [
+                13, 'Fizz'
+            ],
         ];
     }
 
+    // 13 - Fizz
+    // 31 - Fizz
     /**
      * @dataProvider fizzBuzzDataProvider
      */
