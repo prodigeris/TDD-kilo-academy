@@ -14,15 +14,9 @@ class FizzBuzz
 
     public function execute(int $number): string
     {
-        $result = '';
+        $result = $this->iterateThroughRules($number);
 
-        foreach($this->ruleMap as $denominator => $text) {
-            if($this->isDivisibleOrContains($number, $denominator)) {
-                $result .= $text;
-            }
-        }
-
-        if($this->isNotDivisible($result)) {
+        if($this->isEmpty($result)) {
             return (string) $number;
         }
 
@@ -39,7 +33,7 @@ class FizzBuzz
         return $number % $what === 0;
     }
 
-    private function isNotDivisible(string $result): bool
+    private function isEmpty(string $result): bool
     {
         return $result === '';
     }
@@ -48,5 +42,16 @@ class FizzBuzz
     {
         return $this->isDivisibleBy($number, $denominator)
             || $this->doesNumberContain($number, (string)$denominator);
+    }
+
+    private function iterateThroughRules(int $number): string
+    {
+        $result = '';
+        foreach ($this->ruleMap as $denominator => $text) {
+            if ($this->isDivisibleOrContains($number, $denominator)) {
+                $result .= $text;
+            }
+        }
+        return $result;
     }
 }
