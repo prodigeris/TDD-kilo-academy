@@ -12,6 +12,10 @@ class FizzBuzz
             return 'Fizz';
         }
 
+        if($number === 5) {
+            return 'Buzz';
+        }
+
         return (string) $number;
     }
 }
