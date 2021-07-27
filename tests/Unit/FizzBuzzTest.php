@@ -43,19 +43,23 @@ class FizzBuzzTest extends TestCase
             'number_9' => [
                 9, 'Fizz'
             ],
+            'number_10' => [
+                10, 'Buzz'
+            ],
+            'number_15' => [
+                15, 'FizzBuzz'
+            ],
+            'number_20' => [
+                20, 'Buzz'
+            ],
+            'number_100' => [
+                100, 'Buzz'
+            ],
+            'number_300' => [
+                300, 'FizzBuzz'
+            ],
         ];
     }
-
-    //  1 - 1
-    //  2 - 2
-    //  3 - Fizz
-    //  4 - 4
-    //  5 - Buzz
-    //  6 - Fizz
-    // 7 - 7
-    // 8 - 8
-    // 9 - Fizz
-
 
     /**
      * @dataProvider fizzBuzzDataProvider

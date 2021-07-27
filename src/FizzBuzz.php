@@ -6,16 +6,26 @@ namespace TDD;
 
 class FizzBuzz
 {
+    private const FIZZ = 'Fizz';
+
+    private const BUZZ = 'Buzz';
+
     public function execute(int $number): string
     {
+        $result = '';
+
         if($number % 3 === 0) {
-            return 'Fizz';
+            $result .= self::FIZZ;
         }
 
-        if($number === 5) {
-            return 'Buzz';
+        if($number % 5 === 0) {
+            $result .= self::BUZZ;
         }
 
-        return (string) $number;
+        if($result === '') {
+            $result .= $number;
+        }
+
+        return $result;
     }
 }
