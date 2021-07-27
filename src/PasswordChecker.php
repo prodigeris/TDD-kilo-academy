@@ -10,6 +10,8 @@ use TDD\Exception\TooShortPasswordException;
 
 class PasswordChecker
 {
+    private const MIN_LENGTH = 7;
+
     public function validate(string $string): void
     {
         if($this->notContainsDigit($string)) {
@@ -18,7 +20,9 @@ class PasswordChecker
         if($this->notContainsLetter($string)) {
             throw new NoLetterInPasswordException();
         }
-        throw new TooShortPasswordException();
+        if($this->shortenThanMin($string)) {
+            throw new TooShortPasswordException();
+        }
     }
 
     private function containsLetter(string $string): int|false
@@ -39,5 +43,10 @@ class PasswordChecker
     private function notContainsDigit(string $string): bool
     {
         return !$this->containsDigit($string);
+    }
+
+    private function shortenThanMin(string $string): bool
+    {
+        return strlen($string) < self::MIN_LENGTH;
     }
 }

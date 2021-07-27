@@ -10,6 +10,14 @@ use TDD\PasswordChecker;
 
 class PasswordCheckerTest extends TestCase
 {
+    private const PASSWORD_TOO_SHORT = 'a23456';
+
+    private const PASSWORD_WO_LETTER = '1234567';
+
+    private const PASSWORD_WO_DIGIT = 'abcdefghij';
+
+    private const VALID_PASSWORD = 'ab2cdefgh5ij';
+
     private PasswordChecker $checker;
 
     protected function setUp(): void
@@ -31,9 +39,9 @@ class PasswordCheckerTest extends TestCase
     public function should_throw_exception_when_password_is_shorter_than_7_chars(): void
     {
         $this->expectException(TooShortPasswordException::class);
-        $this->expectExceptionMessage(TooShortPasswordException::PASSWORD_CHECK_FAILED_TOO_SHORT);
+        $this->expectExceptionMessage(TooShortPasswordException::MESSAGE);
 
-        $this->checker->validate('a23456');
+        $this->checker->validate(self::PASSWORD_TOO_SHORT);
     }
 
     /**
@@ -44,7 +52,7 @@ class PasswordCheckerTest extends TestCase
         $this->expectException(NoLetterInPasswordException::class);
         $this->expectExceptionMessage(NoLetterInPasswordException::MESSAGE);
 
-        $this->checker->validate('1234567');
+        $this->checker->validate(self::PASSWORD_WO_LETTER);
     }
 
     /**
@@ -55,6 +63,16 @@ class PasswordCheckerTest extends TestCase
         $this->expectException(NoDigitInPasswordException::class);
         $this->expectExceptionMessage(NoDigitInPasswordException::MESSAGE);
 
-        $this->checker->validate('abcdefghij');
+        $this->checker->validate(self::PASSWORD_WO_DIGIT);
+    }
+
+    /**
+     * @test
+     */
+    public function should_not_throw_exception_when_password_matches_the_rules(): void
+    {
+        $this->checker->validate(self::VALID_PASSWORD);
+
+        $this->assertTrue(true);
     }
 }
