@@ -19,5 +19,35 @@ class FizzBuzzTest extends TestCase
         $this->assertInstanceOf(FizzBuzz::class, $this->fizzBuzz);
     }
 
+    public function fizzBuzzDataProvider(): array
+    {
+        return [
+            'number_1' => [
+                1, '1'
+            ],
+            'number_2' => [
+                2, '2'
+            ],
+            'number_3' => [
+                3, 'Fizz'
+            ],
+        ];
+    }
 
+    //  1 - 1
+    //  2 - 2
+    //  3 - Fizz
+    //  4 - 4
+    //  5 - Buzz
+
+
+    /**
+     * @dataProvider fizzBuzzDataProvider
+     */
+    public function test_should_return_result_according_to_data_set(int $number, string $expected): void
+    {
+        $actual = $this->fizzBuzz->execute($number);
+
+        self::assertSame($expected, $actual);
+    }
 }
