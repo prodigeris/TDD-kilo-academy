@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
+use TDD\Exception\NoDigitInPasswordException;
 use TDD\Exception\NoLetterInPasswordException;
 use TDD\Exception\TooShortPasswordException;
 use TDD\PasswordChecker;
@@ -44,5 +45,16 @@ class PasswordCheckerTest extends TestCase
         $this->expectExceptionMessage(NoLetterInPasswordException::MESSAGE);
 
         $this->checker->validate('1234567');
+    }
+
+    /**
+     * @test
+     */
+    public function should_throw_exception_when_password_does_not_contain_a_digit(): void
+    {
+        $this->expectException(NoDigitInPasswordException::class);
+        $this->expectExceptionMessage(NoDigitInPasswordException::MESSAGE);
+
+        $this->checker->validate('abcdefghij');
     }
 }
